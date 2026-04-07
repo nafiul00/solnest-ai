@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Après Arcade — Listing Report | Solnest Stays</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d27;
+    --accent: #ff5a5f;
+    --accent2: #00a699;
+    --gold: #f5c542;
+    --text: #e8e8e8;
+    --muted: #8b8fa3;
+    --border: #2a2d3a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; line-height: 1.6; }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    height: 480px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+  }
+  .hero-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5);
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    padding: 40px;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(15,17,23,0.95));
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .hero h1 { font-size: 2.4rem; font-weight: 700; margin-bottom: 8px; }
+  .hero-sub { color: var(--muted); font-size: 1.1rem; }
+
+  /* Container */
+  .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+  /* Stat cards */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .stat-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .stat-value { font-size: 2.2rem; font-weight: 800; color: var(--accent); }
+  .stat-value.green { color: var(--accent2); }
+  .stat-value.gold { color: var(--gold); }
+  .stat-label { color: var(--muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+  /* Section headers */
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+  }
+
+  /* Rating bars */
+  .ratings-section { margin-bottom: 48px; }
+  .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .rating-label { width: 140px; font-size: 0.95rem; color: var(--muted); }
+  .rating-bar-bg {
+    flex: 1;
+    height: 12px;
+    background: var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .rating-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--accent), var(--gold));
+    transition: width 0.8s ease;
+  }
+  .rating-score { width: 40px; text-align: right; font-weight: 700; font-size: 0.95rem; }
+
+  /* Reviews */
+  .reviews-section { margin-bottom: 48px; }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 20px;
+  }
+  .review-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform 0.2s;
+  }
+  .review-card:hover { transform: translateY(-2px); }
+  .review-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .review-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+  }
+  .review-name { font-weight: 600; font-size: 0.95rem; }
+  .review-meta { color: var(--muted); font-size: 0.8rem; }
+  .review-stars { color: var(--gold); margin-bottom: 10px; font-size: 0.9rem; }
+  .review-text { font-size: 0.92rem; line-height: 1.65; color: #ccc; }
+  .review-response {
+    margin-top: 14px;
+    padding: 14px;
+    background: rgba(0,166,153,0.08);
+    border-left: 3px solid var(--accent2);
+    border-radius: 0 8px 8px 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .review-response strong { color: var(--accent2); }
+  .review-tag {
+    display: inline-block;
+    background: rgba(255,90,95,0.12);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-left: auto;
+  }
+
+  /* Photo gallery */
+  .gallery-section { margin-bottom: 48px; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+  .gallery-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s;
+    cursor: pointer;
+  }
+  .gallery-img:hover { transform: scale(1.03); }
+
+  /* Amenities */
+  .amenities-section { margin-bottom: 48px; }
+  .amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+  }
+  .amenity-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .amenity-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent2);
+    flex-shrink: 0;
+  }
+
+  /* Host section */
+  .host-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 48px;
+  }
+  .host-avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--gold);
+    flex-shrink: 0;
+  }
+  .host-info h3 { font-size: 1.2rem; margin-bottom: 4px; }
+  .host-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+  .host-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(245,197,66,0.12);
+    color: var(--gold);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 12px;
+  }
+
+  /* Listing details */
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .detail-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .detail-card h4 { color: var(--accent2); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .detail-card p { font-size: 1rem; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px 20px;
+    color: var(--muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Timeline */
+  .timeline { margin-bottom: 48px; }
+  .timeline-bar {
+    display: flex;
+    gap: 2px;
+    height: 40px;
+    align-items: flex-end;
+    margin-top: 16px;
+  }
+  .timeline-col {
+    flex: 1;
+    background: var(--accent);
+    border-radius: 4px 4px 0 0;
+    min-width: 20px;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .timeline-col:hover { background: var(--gold); }
+  .timeline-labels {
+    display: flex;
+    gap: 2px;
+    margin-top: 6px;
+  }
+  .timeline-labels span {
+    flex: 1;
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 768px) {
+    .hero { height: 340px; }
+    .hero h1 { font-size: 1.6rem; }
+    .host-section { flex-direction: column; text-align: center; }
+    .reviews-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <img class="hero-img" src="https://a0.muscache.com/im/pictures/hosting/Hosting-1492274390479279422/original/cba629b5-7ce6-4fe7-a325-1194477666e7.jpeg" alt="Après Arcade">
+  <div class="hero-content">
+    <span class="hero-badge">Guest Favorite</span>
+    <h1>Family-Friendly Retreat | Hot-Tub &bull; Arcade &bull; Views</h1>
+    <p class="hero-sub">Sun Peaks Mountain, British Columbia, Canada &mdash; Entire Home &bull; 7 Guests &bull; 3 BR &bull; 2 BA</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Key Stats -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value gold">5.0</div>
+      <div class="stat-label">Overall Rating</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">10</div>
+      <div class="stat-label">Total Reviews</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value green">100%</div>
+      <div class="stat-label">5-Star Reviews</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value gold">100%</div>
+      <div class="stat-label">Response Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value green">7</div>
+      <div class="stat-label">Max Guests</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">4</div>
+      <div class="stat-label">Beds</div>
+    </div>
+  </div>
+
+  <!-- Rating Breakdown -->
+  <div class="ratings-section">
+    <h2 class="section-title">Rating Breakdown</h2>
+    <div class="rating-row">
+      <span class="rating-label">Accuracy</span>
+      <div class="rating-bar-bg"><div class="rating-bar-fill" style="width:100%"></div></div>
+      <span class="rating-score">5.0</span>
+    </div>
+    <div class="rating-row">
+      <span class="rating-label">Communication</span>
+      <div class="rating-bar-bg"><div class="rating-bar-fill" style="width:100%"></div></div>
+      <span class="rating-score">5.0</span>
+    </div>
+    <div class="rating-row">
+      <span class="rating-label">Location</span>
+      <div class="rating-bar-bg"><div class="rating-bar-fill" style="width:100%"></div></div>
+      <span class="rating-score">5.0</span>
+    </div>
+    <div class="rating-row">
+      <span class="rating-label">Guest Satisfaction</span>
+      <div class="rating-bar-bg"><div class="rating-bar-fill" style="width:100%"></div></div>
+      <span class="rating-score">5.0</span>
+    </div>
+    <div class="rating-row">
+      <span class="rating-label">Cleanliness</span>
+      <div class="rating-bar-bg"><div class="rating-bar-fill" style="width:98%"></div></div>
+      <span class="rating-score">4.9</span>
+    </div>
+    <div class="rating-row">
+      <span class="rating-label">Value</span>
+      <div class="rating-bar-bg"><div class="rating-bar-fill" style="width:98%"></div></div>
+      <span class="rating-score">4.9</span>
+    </div>
+    <div class="rating-row">
+      <span class="rating-label">Check-in</span>
+      <div class="rating-bar-bg"><div class="rating-bar-fill" style="width:94%"></div></div>
+      <span class="rating-score">4.7</span>
+    </div>
+  </div>
+
+  <!-- Review Timeline -->
+  <div class="timeline">
+    <h2 class="section-title">Review Timeline</h2>
+    <div class="timeline-bar">
+      <div class="timeline-col" style="height:40px" title="Oct 2025: 2 reviews"></div>
+      <div class="timeline-col" style="height:4px" title="Nov 2025: 0 reviews"></div>
+      <div class="timeline-col" style="height:20px" title="Dec 2025: 1 review"></div>
+      <div class="timeline-col" style="height:60px" title="Jan 2026: 3 reviews"></div>
+      <div class="timeline-col" style="height:60px" title="Feb 2026: 3 reviews"></div>
+      <div class="timeline-col" style="height:20px" title="Mar 2026: 1 review"></div>
+    </div>
+    <div class="timeline-labels">
+      <span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span>
+    </div>
+  </div>
+
+  <!-- Host -->
+  <div class="host-section">
+    <img class="host-avatar" src="https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg" alt="Dee And Ryan">
+    <div class="host-info">
+      <h3>Dee And Ryan</h3>
+      <p style="color:var(--muted); font-size:0.9rem;">Solnest Stays &mdash; 96 reviews &bull; 4.93 avg rating &bull; Responds within an hour</p>
+      <div class="host-badges">
+        <span class="host-badge">Superhost</span>
+        <span class="host-badge">Verified</span>
+        <span class="host-badge">1+ Year Hosting</span>
+        <span class="host-badge">100% Response Rate</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Listing Details -->
+  <h2 class="section-title">Property Details</h2>
+  <div class="details-grid">
+    <div class="detail-card">
+      <h4>Property Type</h4>
+      <p>Entire Home / Apt</p>
+    </div>
+    <div class="detail-card">
+      <h4>Bedrooms</h4>
+      <p>3 bedrooms &bull; 4 beds (2 Queen + 1 Bunk)</p>
+    </div>
+    <div class="detail-card">
+      <h4>Bathrooms</h4>
+      <p>2 baths (Ensuite walk-in shower + Tub-shower combo)</p>
+    </div>
+    <div class="detail-card">
+      <h4>Location</h4>
+      <p>Sun Peaks Mountain, BC, Canada</p>
+    </div>
+    <div class="detail-card">
+      <h4>Ski Access</h4>
+      <p>Ski-in / Ski-out to Burfield Lodge (2 min walk)</p>
+    </div>
+    <div class="detail-card">
+      <h4>Registration</h4>
+      <p>Municipal: 1158 &bull; Provincial: H498116653</p>
+    </div>
+  </div>
+
+  <!-- Key Amenities -->
+  <div class="amenities-section">
+    <h2 class="section-title">Key Amenities</h2>
+    <div class="amenities-grid">
+      <div class="amenity-item"><span class="amenity-dot"></span>Private Hot Tub</div>
+      <div class="amenity-item"><span class="amenity-dot"></span>Arcade Game Room</div>
+      <div class="amenity-item"><span class="amenity-dot"></span>EV Charger</div>
+      <div class="amenity-item"><span class="amenity-dot"></span>Pet Friendly</div>
+      <div class="amenity-item"><span class="amenity-dot"></span>Fireplace</div>
+      <div class="amenity-item"><span class="amenity-dot"></span>Smart TV</div>
+      <div class="amenity-item"><span class="amenity-dot"></span>Fully Equipped Kitchen</div>
+      <div class="amenity-item"><span class="amenity-dot"></span>Washer & Dryer</div>
+      <div class="amenity-item"><span class="amenity-dot"></span>BBQ Grill</div>
+      <div class="amenity-item"><span class="amenity-dot"></span>Board Games</div>
+      <div class="amenity-item"><span class="amenity-dot"></span>Pack 'n Play & High Chair</div>
+      <div class="amenity-item"><span class="amenity-dot"></span>2 Parking Spots</div>
+      <div class="amenity-item"><span class="amenity-dot"></span>Beer Fridge</div>
+      <div class="amenity-item"><span class="amenity-dot"></span>Ski & Bike Gear Drying</div>
+      <div class="amenity-item"><span class="amenity-dot"></span>Mountain Views</div>
+      <div class="amenity-item"><span class="amenity-dot"></span>Dining for 8</div>
+    </div>
+  </div>
+
+  <!-- Reviews -->
+  <div class="reviews-section">
+    <h2 class="section-title">Guest Reviews (10)</h2>
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="review-header">
+          <img class="review-avatar" src="https://a0.muscache.com/im/pictures/user/ae9351a1-533d-41a3-8f8e-fe6ea9852a24.jpg" alt="Jacob">
+          <div>
+            <div class="review-name">Jacob</div>
+            <div class="review-meta">Bellingham, WA &bull; Feb 25, 2026</div>
+          </div>
+          <span class="review-tag">Stayed with a pet</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">We had such a great time here. The condo was very clean, the kitchen was perfect, well stocked and nice appliances. The view was incredible and we watched the snow fall over the mountains while in the hot tub and from within the living room. Dee and Ryan were great hosts, very friendly and accommodating. Would definitely stay here again.</p>
+        <div class="review-response"><strong>Host response:</strong> Thank you for sharing your experience, Jacob. We're delighted you enjoyed our house and all its comforts, from the well-stocked kitchen to the snowy mountain views. We'd love to welcome you back anytime!</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <img class="review-avatar" src="https://a0.muscache.com/im/pictures/user/83eec46d-6f0c-4f53-b4e1-6e7685558c3a.jpg" alt="Janelle">
+          <div>
+            <div class="review-name">Janelle</div>
+            <div class="review-meta">Covington, WA &bull; Feb 21, 2026</div>
+          </div>
+          <span class="review-tag">Stayed with kids</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">Great location. Very peaceful. Nice place to feel at home. Everything you need is in condo and surrounding area. Close to village. Walkable/shuttle or easy drive in. Ski in ski out.</p>
+        <div class="review-response"><strong>Host response:</strong> Thank you, Janelle, for highlighting our house's peaceful setting and ski-in ski-out convenience. We're thrilled you felt at home and enjoyed the easy access to the village&mdash;look forward to hosting you again!</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <img class="review-avatar" src="https://a0.muscache.com/im/pictures/user/7d6ed29c-1991-4e30-abeb-03561c22afe3.jpg" alt="Priya">
+          <div>
+            <div class="review-name">Priya</div>
+            <div class="review-meta">Kamloops, Canada &bull; Feb 9, 2026</div>
+          </div>
+          <span class="review-tag">Group trip</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">Beautiful, cozy and clean. We had a great time. Communication was easy. Had all of the necessities and more, the hot tub added bonus. Location was great would definitely recommend.</p>
+        <div class="review-response"><strong>Host response:</strong> Thank you so much for taking the time to share your experience, Priya. We're thrilled you found our house cozy, well-equipped, and enjoyed the hot tub&mdash;your recommendation means a lot to us, and we'd love to welcome you back anytime!</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <img class="review-avatar" src="https://a0.muscache.com/im/pictures/user/3b00e994-f450-4ec6-873f-41a2628685aa.jpg" alt="Hannah">
+          <div>
+            <div class="review-name">Hannah</div>
+            <div class="review-meta">Alberta, Canada &bull; Jan 28, 2026</div>
+          </div>
+          <span class="review-tag">Stayed with a pet</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">This is such a nice place to stay! The hosts replied very fast which was helpful! The online portal was not working well for check in but the hosts quickly provided all the info needed. Wifi was quite spotty but everything else was perfect and we really enjoyed our stay! We hope we can stay again :)</p>
+        <div class="review-response"><strong>Host response:</strong> Thanks so much for staying at our house and for sharing your experience. We appreciate your patience with check-in and will work on improving our portal and internet. We'd love to welcome you back anytime!</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <img class="review-avatar" src="https://a0.muscache.com/im/pictures/user/561bea52-0b9b-4892-8146-f9d66e98c3f9.jpg" alt="Jon">
+          <div>
+            <div class="review-name">Jon</div>
+            <div class="review-meta">Bellingham, WA &bull; Jan 19, 2026</div>
+          </div>
+          <span class="review-tag">Stayed with a pet</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">We really enjoyed our stay here. The place was spotless, modern, and thoughtfully equipped with everything we needed. The hosts were great communicators from start to finish, and the easy access to the ski lifts was a huge bonus. Truly an incredible stay.</p>
+        <div class="review-response"><strong>Host response:</strong> Thank you for taking the time to share your experience, Jon. I'm glad our house's design, amenities, and communication made your stay comfortable, and it's great to hear the ski-lift access was so convenient. You're welcome back anytime!</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <img class="review-avatar" src="https://a0.muscache.com/im/users/44885481/profile_pic/1443492724/original.jpg" alt="Craig">
+          <div>
+            <div class="review-name">Craig</div>
+            <div class="review-meta">Vernon, Canada &bull; Jan 5, 2026</div>
+          </div>
+          <span class="review-tag">Group trip</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">Ryan and Dee's place was very nice and well equipped for a comfortable stay. The location is great with the burfield chair so close. We would stay at this spot again for sure.</p>
+        <div class="review-response"><strong>Host response:</strong> Craig, thank you for the kind words&mdash;glad our house felt comfortable and that the location worked well for you. We'd be happy to host you again next time you're in Sun Peaks.</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <img class="review-avatar" src="https://a0.muscache.com/im/pictures/user/ad3d5ae0-10ee-43ce-8601-21b009b179c5.jpg" alt="Josh & Kimberly">
+          <div>
+            <div class="review-name">Josh &amp; Kimberly</div>
+            <div class="review-meta">Seattle, WA &bull; Jan 3, 2026</div>
+          </div>
+          <span class="review-tag">Stayed with kids</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">Our family really enjoyed our time here! The arcade room was amazing for the kids. The adults loved the comfy beds, nice cookware, plethora of food storage options and the beautiful view of the mountains. Everything was clean and orderly. We did have a little bit of difficulty checking in, but the hosts were very responsive to resolve the issues quickly. We would recommend this place to anyone who wants a little more space and a little distance from the village center. Thanks for a great stay!</p>
+        <div class="review-response"><strong>Host response:</strong> Thank you for choosing our house and for sharing such kind words about the beds, cookware and especially the arcade room&mdash;so glad the whole family had fun! We appreciate your patience during check-in and are already working to make that process smoother. We hope to welcome you back!</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <img class="review-avatar" src="https://a0.muscache.com/im/pictures/user/0b51d051-5dab-41af-b7c0-09c24a757914.jpg" alt="Christopher">
+          <div>
+            <div class="review-name">Christopher</div>
+            <div class="review-meta">Victoria, Canada &bull; Dec 27, 2025</div>
+          </div>
+          <span class="review-tag">Stayed with a pet</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">Our family had a great stay. The kids loved the arcade. It was an easy walk to the ski hill. The kitchen amenities were all high quality. We'll be back!</p>
+        <div class="review-response"><strong>Host response:</strong> Christopher, thanks so much for the kind review&mdash;I'm glad the arcade and the easy walk to the ski hill worked well for your group. We're pleased the kitchen met your needs and look forward to welcoming you back.</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <img class="review-avatar" src="https://a0.muscache.com/im/pictures/user/fb874009-d05b-4217-8208-f20f6b4220df.jpg" alt="Amy">
+          <div>
+            <div class="review-name">Amy</div>
+            <div class="review-meta">Prince George, Canada &bull; Oct 29, 2025</div>
+          </div>
+          <span class="review-tag">Stayed a few nights</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">We had such a relaxed stay! The airbnb is so clean, beautiful and well organised. A special touch we loved&mdash;the toys laid out in the kids room&mdash;our son was so excited to play with the trucks and read the gorgeous books. The unit has a most beautiful view of the mountain and it was a pleasure to stay there, in a very very comfy bed I might add! The hosts were so responsive and helpful which made everything so easy.</p>
+        <div class="review-response"><strong>Host response:</strong> Thank you, Amy&mdash;we're so happy you found our house clean, comfortable and well stocked for your stay. It was a pleasure hosting you and we appreciate your kind words about the view, the toys and the comfy bed&mdash;you're welcome back anytime!</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <img class="review-avatar" src="https://a0.muscache.com/im/pictures/user/ce5853c2-ebc7-4154-8605-b5485b0ff54b.jpg" alt="Matthew">
+          <div>
+            <div class="review-name">Matthew</div>
+            <div class="review-meta">Langley, Canada &bull; Oct 27, 2025</div>
+          </div>
+          <span class="review-tag">Stayed with kids</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">Was such a beautiful spot, amazing views as you look out from the jacuzzi up the mountain, lovely furnishings and finishes in the Bnb, made us feel right at home as we walked through the door. And the arcade downstairs is a blast! Couldn't recommend this spot enough for a great family holiday! Thanks Ryan and Dee for being amazing hosts, responding quickly to any small request and always being incredibly helpful. We'll be back!</p>
+        <div class="review-response"><strong>Host response:</strong> Thanks so much, Matthew&mdash;we're really glad our house felt like home and that you enjoyed the views, hot tub and arcade. We'd love to host you again next time you're in Sun Peaks.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Photo Gallery -->
+  <div class="gallery-section">
+    <h2 class="section-title">Photo Gallery</h2>
+    <div class="gallery-grid">
+      <img class="gallery-img" src="https://a0.muscache.com/im/pictures/hosting/Hosting-1492274390479279422/original/cba629b5-7ce6-4fe7-a325-1194477666e7.jpeg" alt="Hot tub views">
+      <img class="gallery-img" src="https://a0.muscache.com/im/pictures/hosting/Hosting-1492274390479279422/original/340a9d7f-37cb-4ec5-a284-2dca1d433cec.jpeg" alt="Dining area">
+      <img class="gallery-img" src="https://a0.muscache.com/im/pictures/hosting/Hosting-1492274390479279422/original/10c19242-c3c6-4bad-a49f-f7ecb44c2162.jpeg" alt="Arcade room">
+      <img class="gallery-img" src="https://a0.muscache.com/im/pictures/hosting/Hosting-1492274390479279422/original/5533a490-553f-477b-8bbf-e4689acdbd8c.jpeg" alt="Bedroom">
+      <img class="gallery-img" src="https://a0.muscache.com/im/pictures/hosting/Hosting-1492274390479279422/original/6aa77a61-f162-4b10-8745-5b6b8fa79d54.jpeg" alt="Hot tub evening">
+      <img class="gallery-img" src="https://a0.muscache.com/im/pictures/hosting/Hosting-1492274390479279422/original/f727b23f-505d-464e-bb58-8ed904587003.jpeg" alt="Live edge dining">
+      <img class="gallery-img" src="https://a0.muscache.com/im/pictures/hosting/Hosting-1492274390479279422/original/d4d2dc4d-b989-48a0-b49e-8d5c04cd8148.jpeg" alt="Arcade games">
+      <img class="gallery-img" src="https://a0.muscache.com/im/pictures/hosting/Hosting-1492274390479279422/original/967fb253-27d5-4b94-ae4b-bc4fdeb34cc6.jpeg" alt="Kids room">
+      <img class="gallery-img" src="https://a0.muscache.com/im/pictures/hosting/Hosting-1492274390479279422/original/336253e8-0c83-4275-8146-1ea373835a44.jpeg" alt="Mountain view">
+      <img class="gallery-img" src="https://a0.muscache.com/im/pictures/hosting/Hosting-1492274390479279422/original/685cb25c-ed9c-4034-8532-f8a557d18ab0.jpeg" alt="Patio grill">
+      <img class="gallery-img" src="https://a0.muscache.com/im/pictures/hosting/Hosting-1492274390479279422/original/8289ac12-fee2-46dd-bf42-a15e60a74e8a.jpeg" alt="Master bedroom">
+      <img class="gallery-img" src="https://a0.muscache.com/im/pictures/hosting/Hosting-1492274390479279422/original/595de931-b4d8-4379-95c5-d5785c154de6.jpeg" alt="Bedroom detail">
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  Solnest Stays &mdash; Après Arcade Listing Report &bull; Generated March 14, 2026 &bull; Data sourced via Apify
+</footer>
+
+</body>
+</html>

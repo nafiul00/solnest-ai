@@ -1,0 +1,560 @@
+/* ─── Google Font Import ────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Dancing+Script:wght@600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design Tokens — Solnest Stays: White/Light Professional ──────────────── */
+:root {
+  /* Backgrounds — warm off-white hierarchy */
+  --bg-base:      #FAFAF9;   /* page canvas — warm off-white */
+  --bg-surface:   #FFFFFF;   /* sidebar, topbar */
+  --bg-card:      #FFFFFF;   /* cards */
+  --bg-card-2:    #F5F4F1;   /* nested / hover */
+  --bg-input:     #F5F4F1;
+
+  /* Borders */
+  --border:       rgba(10, 10, 9, 0.10);
+  --border-mid:   rgba(10, 10, 9, 0.18);
+  --border-hi:    rgba(10, 10, 9, 0.34);
+
+  /* Accent palette — vivid, punchy */
+  --gold:       #D4920A;   /* rich amber gold */
+  --gold-hi:    #F0A825;   /* gold hover — bright */
+  --sage:       #1A7A44;   /* vivid forest green */
+  --mist:       #0E8F6A;   /* vivid teal-green */
+  --terracotta: #C9501A;   /* vivid terracotta */
+  --cream:      #F5EDD8;
+  --red:        #D63031;   /* vivid red */
+  --amber:      #D4920A;
+  --green:      #1A7A44;
+  --purple:     #7C3FC0;   /* vivid purple */
+  --pink:       #C0396A;
+  --orange:     #C9501A;
+  --cyan:       #0E8F6A;
+
+  /* Text */
+  --t1: #0A0A09;   /* near black — crisp */
+  --t2: #2D2D2A;   /* dark body */
+  --t3: #6B6B62;   /* muted labels */
+
+  /* Glows — warmer, more visible */
+  --glow-sm: 0 1px 6px rgba(10,10,9,0.10), 0 3px 12px rgba(10,10,9,0.07);
+  --glow-md: 0 4px 20px rgba(10,10,9,0.12), 0 8px 32px rgba(10,10,9,0.08);
+  --glow-lg: 0 8px 36px rgba(10,10,9,0.16), 0 16px 56px rgba(10,10,9,0.10);
+
+  /* Spacing scale (8px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Radius */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+}
+
+/* ─── Reset ─────────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* Force DM Sans everywhere — serif must be explicitly applied via .font-serif or .t-heading */
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* Opt-in serif: only explicit heading classes get Cormorant Garamond */
+.font-serif, .t-display, .t-heading {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+}
+
+/* ─── Base ──────────────────────────────────────────────────────────────────── */
+html { font-size: 16px; }
+
+body {
+  background-color: #FAFAF9;
+  color: #0F0F0E;
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+}
+
+/* ─── Typography Scale ──────────────────────────────────────────────────────── */
+
+/* Page / section titles only — Cormorant for headings, never for numbers */
+.t-display {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--t1);
+}
+.t-heading {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0em;
+  color: var(--t1);
+}
+
+/* Section labels — sentence-case, NOT uppercase */
+.t-subheading {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--t3);
+  font-family: 'DM Sans', sans-serif;
+}
+.t-body {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--t2);
+  font-family: 'DM Sans', sans-serif;
+}
+.t-small {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--t3);
+  font-family: 'DM Sans', sans-serif;
+}
+.t-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--t3);
+  font-family: 'DM Sans', sans-serif;
+}
+.t-mono {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Metric numbers — DM Sans, clean and legible */
+.t-metric {
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.t-script {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 600;
+}
+
+/* Legacy alias — DM Sans for all numbers */
+.metric-value {
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ─── Light grid canvas background ─────────────────────────────────────────── */
+.grid-bg {
+  position: relative;
+}
+.grid-bg::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(10, 10, 9, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 10, 9, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+/* Vivid warm radial overlays */
+.grid-bg::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at 15% 0%, rgba(212, 146, 10, 0.12) 0%, transparent 55%),
+              radial-gradient(ellipse at 85% 100%, rgba(26, 122, 68, 0.09) 0%, transparent 55%),
+              radial-gradient(ellipse at 50% 50%, rgba(14, 143, 106, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Cards ─────────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid rgba(10, 10, 9, 0.10);
+  border-radius: var(--r-md);
+  box-shadow: 0 1px 4px rgba(10,10,9,0.08), 0 4px 16px rgba(10,10,9,0.06);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+.card:hover {
+  border-color: rgba(10,10,9,0.18);
+  box-shadow: 0 6px 24px rgba(10,10,9,0.13), 0 2px 10px rgba(10,10,9,0.08);
+}
+.card-active {
+  border-color: rgba(184, 134, 11, 0.4) !important;
+  box-shadow: var(--glow-md) !important;
+}
+
+/* Section header inside cards */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  min-height: 48px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ─── Interactive micro-interactions ────────────────────────────────────────── */
+.lift {
+  transition: transform 0.18s ease, box-shadow 0.2s ease;
+  will-change: transform;
+}
+.lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(15, 15, 15, 0.12), var(--glow-sm);
+}
+
+/* ─── Pulsing status dots ────────────────────────────────────────────────────── */
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(44, 110, 73, 0.5); }
+  60%       { opacity: 0.85; box-shadow: 0 0 0 5px rgba(44, 110, 73, 0); }
+}
+@keyframes pulse-amber {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(184, 134, 11, 0.5); }
+  60%       { opacity: 0.85; box-shadow: 0 0 0 5px rgba(184, 134, 11, 0); }
+}
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(192, 57, 43, 0.5); }
+  60%       { opacity: 0.85; box-shadow: 0 0 0 5px rgba(192, 57, 43, 0); }
+}
+@keyframes pulse-cyan {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(59, 122, 87, 0.5); }
+  60%       { opacity: 0.85; box-shadow: 0 0 0 5px rgba(59, 122, 87, 0); }
+}
+
+.dot-green  { background: var(--sage);  border-radius: 50%; animation: pulse-green 2.2s infinite; }
+.dot-amber  { background: var(--gold);  border-radius: 50%; animation: pulse-amber 2.2s infinite; }
+.dot-red    { background: var(--red);   border-radius: 50%; animation: pulse-red   2.2s infinite; }
+.dot-cyan   { background: var(--mist);  border-radius: 50%; animation: pulse-cyan  2.2s infinite; }
+.dot-gray   { background: var(--t3);    border-radius: 50%; }
+
+/* ─── Animations ────────────────────────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0%   { background-position: -700px 0; }
+  100% { background-position: 700px 0; }
+}
+@keyframes dash {
+  to { stroke-dashoffset: -20; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.feed-entry   { animation: fadeInUp 0.28s ease-out; }
+.page-enter   { animation: page-in 0.22s ease both; }
+.animated-dash {
+  stroke-dasharray: 8 4;
+  animation: dash 1.5s linear infinite;
+}
+
+/* ─── Skeleton shimmer ──────────────────────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #F0EEE8 25%,
+    rgba(184, 134, 11, 0.06) 50%,
+    #F0EEE8 75%
+  );
+  background-size: 700px 100%;
+  animation: shimmer 1.8s infinite linear;
+  border-radius: var(--r-sm);
+}
+
+/* ─── Glow helpers ──────────────────────────────────────────────────────────── */
+.glow-gold       { box-shadow: 0 2px 12px rgba(184, 134, 11, 0.15); }
+.glow-text-gold  { text-shadow: 0 1px 8px rgba(184, 134, 11, 0.30); }
+/* legacy alias */
+.glow-cyan       { box-shadow: var(--glow-md); }
+.glow-text-cyan  { text-shadow: 0 1px 8px rgba(59, 122, 87, 0.30); }
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(15, 15, 15, 0.15);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(15, 15, 15, 0.28); }
+
+/* ─── Table ─────────────────────────────────────────────────────────────────── */
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th {
+  background: #F2F0EB;
+  color: #52524A;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+  font-family: 'DM Sans', sans-serif;
+}
+.data-table td {
+  padding: 13px 16px;
+  border-bottom: 1px solid rgba(10, 10, 9, 0.07);
+  color: #2A2A27;
+  font-size: 13px;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover td {
+  background: rgba(212, 146, 10, 0.04);
+}
+
+/* ─── Inputs ─────────────────────────────────────────────────────────────────── */
+input, select, textarea {
+  background: #F5F4F1;
+  border: 1px solid rgba(15, 15, 15, 0.14);
+  color: #0F0F0E;
+  border-radius: var(--r-sm);
+  padding: 8px 12px;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: #0F0F0E;
+  box-shadow: 0 0 0 2px rgba(15, 15, 15, 0.08);
+}
+input::placeholder, textarea::placeholder { color: #7A7A72; }
+
+/* ─── Buttons ────────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: var(--r-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: var(--gold);
+  color: #FFFFFF;
+  border-color: var(--gold);
+  font-weight: 600;
+}
+.btn-primary:hover {
+  background: #C47E06;
+  border-color: #C47E06;
+  box-shadow: 0 2px 8px rgba(212, 146, 10, 0.30);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #3D3D39;
+  border-color: rgba(15, 15, 15, 0.18);
+}
+.btn-ghost:hover {
+  border-color: #0F0F0E;
+  color: #0F0F0E;
+  background: rgba(15, 15, 15, 0.04);
+}
+
+.btn-danger {
+  background: transparent;
+  color: var(--red);
+  border-color: rgba(192, 57, 43, 0.3);
+}
+.btn-danger:hover {
+  background: rgba(192, 57, 43, 0.08);
+  border-color: var(--red);
+}
+
+.btn-sm {
+  font-size: 12px;
+  padding: 6px 12px;
+}
+
+.btn-icon {
+  padding: 6px;
+  border-radius: var(--r-sm);
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--t3);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-icon:hover {
+  background: rgba(15, 15, 15, 0.05);
+  color: #0F0F0E;
+  border-color: var(--border);
+}
+
+/* ─── Badge/Tag ─────────────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border: 1px solid;
+  font-family: 'DM Sans', sans-serif;
+}
+.badge-green  { color: #147A3A; background: rgba(20,122,58,0.12);   border-color: rgba(20,122,58,0.30); }
+.badge-amber  { color: #C07800; background: rgba(192,120,0,0.12);   border-color: rgba(192,120,0,0.30); }
+.badge-red    { color: #C41A1A; background: rgba(196,26,26,0.10);   border-color: rgba(196,26,26,0.28); }
+.badge-cyan   { color: #0A7A5C; background: rgba(10,122,92,0.10);   border-color: rgba(10,122,92,0.26); }
+.badge-purple { color: #6A28B8; background: rgba(106,40,184,0.10);  border-color: rgba(106,40,184,0.26); }
+.badge-gray   { color: #5A5A52; background: rgba(10,10,9,0.07);     border-color: rgba(10,10,9,0.16); }
+
+/* ─── Divider ────────────────────────────────────────────────────────────────── */
+.divider { border: none; border-top: 1px solid var(--border); }
+
+/* ─── Sidebar nav link hover ───────────────────────────────────────────────── */
+.sidebar-link:hover {
+  background: rgba(15, 15, 15, 0.04) !important;
+  color: var(--t1) !important;
+}
+
+/* ─── Main content area breathing room ──────────────────────────────────────── */
+main.flex-1 {
+  padding: 24px !important;
+}
+
+/* ─── Section label in cards ────────────────────────────────────────────────── */
+.section-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--t3);
+  margin-bottom: 12px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ─── Stat row (compact number + label) ─────────────────────────────────────── */
+.stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+}
+.stat-row:last-child { border-bottom: none; }
+
+/* ─── Inline tab nav ────────────────────────────────────────────────────────── */
+.tab-bar {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: fit-content;
+}
+.tab-item {
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--t3);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: none;
+  background: transparent;
+  font-family: 'DM Sans', sans-serif;
+}
+.tab-item:hover { color: var(--t2); background: rgba(15,15,15,0.04); }
+.tab-item.active {
+  background: var(--bg-card);
+  color: var(--t1);
+  border: 1px solid var(--border-mid);
+}
+
+/* ─── Override Tailwind text-size utilities globally ────────────────────────── */
+.text-xs   { font-size: 12px  !important; line-height: 1.55 !important; }
+.text-sm   { font-size: 13px  !important; line-height: 1.55 !important; }
+.text-base { font-size: 14px  !important; line-height: 1.6  !important; }
+.text-lg   { font-size: 16px  !important; line-height: 1.5  !important; }
+.text-xl   { font-size: 18px  !important; line-height: 1.4  !important; }
+.text-2xl  { font-size: 22px  !important; line-height: 1.3  !important; }
+.text-3xl  { font-size: 26px  !important; line-height: 1.2  !important; }
+
+/* ─── Focus ring ────────────────────────────────────────────────────────────── */
+*:focus-visible {
+  outline: 2px solid #0F0F0E;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Text selection ────────────────────────────────────────────────────────── */
+::selection {
+  background: rgba(184, 134, 11, 0.18);
+  color: var(--t1);
+}
+
+/* ─── Card headings (h3 inside .card) ──────────────────────────────────────── */
+.card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--t1);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+/* ─── Dashed kanban add-task rows ───────────────────────────────────────────── */
+.border-dashed { font-size: 13px !important; }
+
+/* ─── Metric value base size ────────────────────────────────────────────────── */
+.metric-value {
+  font-size: 14px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 700;
+}
+
+/* ─── font-mono utility ─────────────────────────────────────────────────────── */
+.font-mono { font-family: 'JetBrains Mono', 'Courier New', monospace !important; font-size: inherit; }
+
+/* ─── Spacing helpers ───────────────────────────────────────────────────────── */
+.card.p-3 { padding: 14px !important; }
+.card.p-4 { padding: 18px !important; }

@@ -1,0 +1,32 @@
+{
+  "client_id": "solnest",
+  "client_name": "Solnest Stays",
+  "response_mode": "auto_send",
+  "response_tone": "friendly and professional",
+  "alert_channels": ["slack", "email"],
+  "escalation_keywords": ["fire", "flood", "police", "injury", "emergency", "broken", "not working", "dangerous", "leak", "smoke"],
+  "auto_respond_to": ["faq", "booking_inquiry", "checkout", "pre_arrival"],
+  "escalate_always": ["complaint", "emergency", "modification"],
+  "properties": [
+    {
+      "hospitable_id": "6a9d3726-eace-483f-b3a7-531f1ff2839b",
+      "property_name": "Boho Bliss",
+      "property_slug": "boho-bliss"
+    },
+    {
+      "hospitable_id": "5dc8331d-70a9-4463-bedb-3118a13c103a",
+      "property_name": "The Urban Nest",
+      "property_slug": "urban-nest"
+    },
+    {
+      "hospitable_id": "9f337b4c-2673-4f67-a9ea-17d0a699c9c2",
+      "property_name": "The Apres Arcade",
+      "property_slug": "apres-arcade"
+    },
+    {
+      "hospitable_id": "206de053-0f37-4d1c-9955-209b22e3d9c4",
+      "property_name": "The Sunburst Chalet in Sun Peaks",
+      "property_slug": "sunburst-chalet"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "client_id": "solnest",
+  "client_name": "Solnest Stays",
+  "notion_databases": {
+    "property_performance": "REPLACE_AFTER_SETUP",
+    "weekly_reports": "REPLACE_AFTER_SETUP",
+    "guest_log": "REPLACE_AFTER_SETUP"
+  },
+  "data_sources": {
+    "pricelabs_reports": "../revenue-intel/reports",
+    "guest_conversations": "../guest-agent/conversations/solnest"
+  },
+  "properties": [
+    { "slug": "boho-bliss", "name": "Boho Bliss" },
+    { "slug": "urban-nest", "name": "The Urban Nest" },
+    { "slug": "apres-arcade", "name": "The Apres Arcade" },
+    { "slug": "sunburst-chalet", "name": "The Sunburst Chalet in Sun Peaks" }
+  ],
+  "schedule": {
+    "daily_metrics": "0 6 * * *",
+    "weekly_report": "0 7 * * 1"
+  }
+}

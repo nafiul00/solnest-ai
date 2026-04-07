@@ -1,0 +1,322 @@
+[
+  {
+    "startUrl": "https://www.airbnb.com/rooms/1492274390479279422",
+    "id": "1629216580805358392",
+    "language": "en",
+    "text": "We had such a great time here. The condo was very clean, the kitchen was perfect, well stocked and nice appliances. The view was incredible and we watched the snow fall over the mountains while in the hot tub and from within the living room. Dee and Ryan were great hosts, very friendly and accommodating. Would definitely stay here again.",
+    "localizedText": "We had such a great time here. The condo was very clean, the kitchen was perfect, well stocked and nice appliances. The view was incredible and we watched the snow fall over the mountains while in the hot tub and from within the living room. Dee and Ryan were great hosts, very friendly and accommodating. Would definitely stay here again.",
+    "localizedReview": null,
+    "localizedDate": "2 weeks ago",
+    "localizedReviewerLocation": "Bellingham, Washington",
+    "createdAt": "2026-02-25T21:22:31Z",
+    "reviewee": {
+      "id": "96168707",
+      "firstName": "Dee And Ryan",
+      "hostName": "Dee And Ryan",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg",
+      "profilePath": "/users/profile/1467158362449623656",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg"
+    },
+    "reviewer": {
+      "id": "191252110",
+      "firstName": "Jacob",
+      "hostName": "Jacob",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/ae9351a1-533d-41a3-8f8e-fe6ea9852a24.jpg",
+      "profilePath": "/users/profile/1490760631205967920",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/ae9351a1-533d-41a3-8f8e-fe6ea9852a24.jpg"
+    },
+    "reviewHighlight": "Stayed with a pet",
+    "highlightType": "TYPE_OF_TRIP",
+    "rating": 5,
+    "response": "Thank you for sharing your experience, Jacob. We’re delighted you enjoyed our house and all its comforts, from the well-stocked kitchen to the snowy mountain views. We’d love to welcome you back anytime!",
+    "ratingAccessibilityLabel": "Rating, 5 stars"
+  },
+  {
+    "startUrl": "https://www.airbnb.com/rooms/1492274390479279422",
+    "id": "1626308319431984410",
+    "language": "en",
+    "text": "Great location. Very peaceful. Nice place to feel at home. Everything you need is in condo and surrounding area. Close to village. Walkable/shuttle or easy drive in. Ski in ski out.",
+    "localizedText": "Great location. Very peaceful. Nice place to feel at home. Everything you need is in condo and surrounding area. Close to village. Walkable/shuttle or easy drive in. Ski in ski out.",
+    "localizedReview": null,
+    "localizedDate": "2 weeks ago",
+    "localizedReviewerLocation": "Covington, Washington",
+    "createdAt": "2026-02-21T21:04:19Z",
+    "reviewee": {
+      "id": "96168707",
+      "firstName": "Dee And Ryan",
+      "hostName": "Dee And Ryan",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg",
+      "profilePath": "/users/profile/1467158362449623656",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg"
+    },
+    "reviewer": {
+      "id": "72965573",
+      "firstName": "Janelle",
+      "hostName": "Janelle",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/83eec46d-6f0c-4f53-b4e1-6e7685558c3a.jpg",
+      "profilePath": "/users/profile/1477002175214594409",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/83eec46d-6f0c-4f53-b4e1-6e7685558c3a.jpg"
+    },
+    "reviewHighlight": "Stayed with kids",
+    "highlightType": "TYPE_OF_TRIP",
+    "rating": 5,
+    "response": "Thank you, Janelle, for highlighting our house’s peaceful setting and ski-in ski-out convenience. We’re thrilled you felt at home and enjoyed the easy access to the village—look forward to hosting you again!",
+    "ratingAccessibilityLabel": "Rating, 5 stars"
+  },
+  {
+    "startUrl": "https://www.airbnb.com/rooms/1492274390479279422",
+    "id": "1616984690868977710",
+    "language": "en",
+    "text": "Beautiful, cozy and clean. We had a great time. Communication was easy. <br/>Had all of the necessities and more, the hot tub added bonus. Location was great would definitely recommend.",
+    "localizedText": "Beautiful, cozy and clean. We had a great time. Communication was easy. <br/>Had all of the necessities and more, the hot tub added bonus. Location was great would definitely recommend.",
+    "localizedReview": null,
+    "localizedDate": "February 2026",
+    "localizedReviewerLocation": "Kamloops, Canada",
+    "createdAt": "2026-02-09T00:19:56Z",
+    "reviewee": {
+      "id": "96168707",
+      "firstName": "Dee And Ryan",
+      "hostName": "Dee And Ryan",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg",
+      "profilePath": "/users/profile/1467158362449623656",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg"
+    },
+    "reviewer": {
+      "id": "216909313",
+      "firstName": "Priya",
+      "hostName": "Priya",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/7d6ed29c-1991-4e30-abeb-03561c22afe3.jpg",
+      "profilePath": "/users/profile/1476162431903138167",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/7d6ed29c-1991-4e30-abeb-03561c22afe3.jpg"
+    },
+    "reviewHighlight": "Group trip",
+    "highlightType": "TYPE_OF_TRIP",
+    "rating": 5,
+    "response": "Thank you so much for taking the time to share your experience, Priya. We’re thrilled you found our house cozy, well-equipped, and enjoyed the hot tub—your recommendation means a lot to us, and we’d love to welcome you back anytime!",
+    "ratingAccessibilityLabel": "Rating, 5 stars"
+  },
+  {
+    "startUrl": "https://www.airbnb.com/rooms/1492274390479279422",
+    "id": "1608290269459730595",
+    "language": "en",
+    "text": "This is such a nice place to stay! The hosts replied very fast which was helpful! The online portal was not working well for check in but the hosts quickly provided all the info needed. Wifi was quite spotty but everything else was perfect and we really enjoyed our stay! We hope we can stay again:)",
+    "localizedText": "This is such a nice place to stay! The hosts replied very fast which was helpful! The online portal was not working well for check in but the hosts quickly provided all the info needed. Wifi was quite spotty but everything else was perfect and we really enjoyed our stay! We hope we can stay again:)",
+    "localizedReview": null,
+    "localizedDate": "January 2026",
+    "localizedReviewerLocation": "Alberta, Canada",
+    "createdAt": "2026-01-28T00:25:40Z",
+    "reviewee": {
+      "id": "96168707",
+      "firstName": "Dee And Ryan",
+      "hostName": "Dee And Ryan",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg",
+      "profilePath": "/users/profile/1467158362449623656",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg"
+    },
+    "reviewer": {
+      "id": "22940123",
+      "firstName": "Hannah",
+      "hostName": "Hannah",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/3b00e994-f450-4ec6-873f-41a2628685aa.jpg",
+      "profilePath": "/users/profile/1492403861244750216",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/3b00e994-f450-4ec6-873f-41a2628685aa.jpg"
+    },
+    "reviewHighlight": "Stayed with a pet",
+    "highlightType": "TYPE_OF_TRIP",
+    "rating": 5,
+    "response": "Thanks so much for staying at our house and for sharing your experience. We appreciate your patience with check-in and will work on improving our portal and internet. We’d love to welcome you back anytime!",
+    "ratingAccessibilityLabel": "Rating, 5 stars"
+  },
+  {
+    "startUrl": "https://www.airbnb.com/rooms/1492274390479279422",
+    "id": "1602416315059309376",
+    "language": "en",
+    "text": "We really enjoyed our stay here. The place was spotless, modern, and thoughtfully equipped with everything we needed. The hosts were great communicators from start to finish, and the easy access to the ski lifts was a huge bonus. Truly an incredible stay.",
+    "localizedText": "We really enjoyed our stay here. The place was spotless, modern, and thoughtfully equipped with everything we needed. The hosts were great communicators from start to finish, and the easy access to the ski lifts was a huge bonus. Truly an incredible stay.",
+    "localizedReview": null,
+    "localizedDate": "January 2026",
+    "localizedReviewerLocation": "Bellingham, Washington",
+    "createdAt": "2026-01-19T21:55:10Z",
+    "reviewee": {
+      "id": "96168707",
+      "firstName": "Dee And Ryan",
+      "hostName": "Dee And Ryan",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg",
+      "profilePath": "/users/profile/1467158362449623656",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg"
+    },
+    "reviewer": {
+      "id": "184824045",
+      "firstName": "Jon",
+      "hostName": "Jon",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/561bea52-0b9b-4892-8146-f9d66e98c3f9.jpg",
+      "profilePath": "/users/profile/1474282664983960756",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/561bea52-0b9b-4892-8146-f9d66e98c3f9.jpg"
+    },
+    "reviewHighlight": "Stayed with a pet",
+    "highlightType": "TYPE_OF_TRIP",
+    "rating": 5,
+    "response": "Thank you for taking the time to share your experience, Jon. I’m glad our house’s design, amenities, and communication made your stay comfortable, and it’s great to hear the ski-lift access was so convenient. You’re welcome back anytime!",
+    "ratingAccessibilityLabel": "Rating, 5 stars"
+  },
+  {
+    "startUrl": "https://www.airbnb.com/rooms/1492274390479279422",
+    "id": "1592288188547379032",
+    "language": "en",
+    "text": "Ryan and Dee's place was very nice and well equipped for a comfortable stay. The location is great with the burfield chair so close. We would stay at this spot again for sure.",
+    "localizedText": "Ryan and Dee's place was very nice and well equipped for a comfortable stay. The location is great with the burfield chair so close. We would stay at this spot again for sure.",
+    "localizedReview": null,
+    "localizedDate": "January 2026",
+    "localizedReviewerLocation": "Vernon, Canada",
+    "createdAt": "2026-01-05T22:32:23Z",
+    "reviewee": {
+      "id": "96168707",
+      "firstName": "Dee And Ryan",
+      "hostName": "Dee And Ryan",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg",
+      "profilePath": "/users/profile/1467158362449623656",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg"
+    },
+    "reviewer": {
+      "id": "44885481",
+      "firstName": "Craig",
+      "hostName": "Craig",
+      "pictureUrl": "https://a0.muscache.com/im/users/44885481/profile_pic/1443492724/original.jpg",
+      "profilePath": "/users/profile/1479850747436498833",
+      "profilePicture": "https://a0.muscache.com/im/users/44885481/profile_pic/1443492724/original.jpg"
+    },
+    "reviewHighlight": "Group trip",
+    "highlightType": "TYPE_OF_TRIP",
+    "rating": 5,
+    "response": "Craig, thank you for the kind words — glad our house felt comfortable and that the location worked well for you. We’d be happy to host you again next time you’re in Sun Peaks.",
+    "ratingAccessibilityLabel": "Rating, 5 stars"
+  },
+  {
+    "startUrl": "https://www.airbnb.com/rooms/1492274390479279422",
+    "id": "1590187359632461514",
+    "language": "en",
+    "text": "Our family really enjoyed our time here! The arcade room was amazing for the kids. The adults loved the comfy beds, nice cookware, plethora of food storage options and the beautiful view of the mountains. Everything was clean and orderly. We did have a little bit of difficulty checking in, but the hosts were very responsive to resolve the issues quickly. We would recommend this place to anyone who wants a little more space and a little distance from the village center. Thanks for a great stay!",
+    "localizedText": "Our family really enjoyed our time here! The arcade room was amazing for the kids. The adults loved the comfy beds, nice cookware, plethora of food storage options and the beautiful view of the mountains. Everything was clean and orderly. We did have a little bit of difficulty checking in, but the hosts were very responsive to resolve the issues quickly. We would recommend this place to anyone who wants a little more space and a little distance from the village center. Thanks for a great stay!",
+    "localizedReview": null,
+    "localizedDate": "January 2026",
+    "localizedReviewerLocation": "Seattle, Washington",
+    "createdAt": "2026-01-03T00:58:25Z",
+    "reviewee": {
+      "id": "96168707",
+      "firstName": "Dee And Ryan",
+      "hostName": "Dee And Ryan",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg",
+      "profilePath": "/users/profile/1467158362449623656",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg"
+    },
+    "reviewer": {
+      "id": "20045771",
+      "firstName": "Josh & Kimberly",
+      "hostName": "Josh & Kimberly",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/ad3d5ae0-10ee-43ce-8601-21b009b179c5.jpg",
+      "profilePath": "/users/profile/1479075233112082547",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/ad3d5ae0-10ee-43ce-8601-21b009b179c5.jpg"
+    },
+    "reviewHighlight": "Stayed with kids",
+    "highlightType": "TYPE_OF_TRIP",
+    "rating": 5,
+    "response": "Thank you for choosing our house and for sharing such kind words about the beds, cookware and especially the arcade room—so glad the whole family had fun! We appreciate your patience during check-in and are already working to make that process smoother. We hope to welcome you back next time you need a bit of extra space and mountain views!",
+    "ratingAccessibilityLabel": "Rating, 5 stars"
+  },
+  {
+    "startUrl": "https://www.airbnb.com/rooms/1492274390479279422",
+    "id": "1585725584900545200",
+    "language": "en",
+    "text": "Our family had a great stay. The kids loved the arcade. It was an easy walk to the ski hill. The kitchen amenities were all high quality. We'll be back!",
+    "localizedText": "Our family had a great stay. The kids loved the arcade. It was an easy walk to the ski hill. The kitchen amenities were all high quality. We'll be back!",
+    "localizedReview": null,
+    "localizedDate": "December 2025",
+    "localizedReviewerLocation": "Victoria, Canada",
+    "createdAt": "2025-12-27T21:13:40Z",
+    "reviewee": {
+      "id": "96168707",
+      "firstName": "Dee And Ryan",
+      "hostName": "Dee And Ryan",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg",
+      "profilePath": "/users/profile/1467158362449623656",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg"
+    },
+    "reviewer": {
+      "id": "91368256",
+      "firstName": "Christopher",
+      "hostName": "Christopher",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/0b51d051-5dab-41af-b7c0-09c24a757914.jpg",
+      "profilePath": "/users/profile/1482572220252731942",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/0b51d051-5dab-41af-b7c0-09c24a757914.jpg"
+    },
+    "reviewHighlight": "Stayed with a pet",
+    "highlightType": "TYPE_OF_TRIP",
+    "rating": 5,
+    "response": "Christopher, thanks so much for the kind review — I’m glad the arcade and the easy walk to the ski hill worked well for your group. We’re pleased the kitchen met your needs and look forward to welcoming you back to our house.",
+    "ratingAccessibilityLabel": "Rating, 5 stars"
+  },
+  {
+    "startUrl": "https://www.airbnb.com/rooms/1492274390479279422",
+    "id": "1542937239141409899",
+    "language": "en",
+    "text": "We had such a relaxed stay! The airbnb is so clean, beautiful and well organised. A special touch we loved- the toys laid out in the kids room- our son was so excited to play with the trucks and read the gorgeous books. The unit has a most beautiful view of the mountain and it was a pleasure to stay there, in a very very comfy bed I might add! The hosts were so responsive and helpful which made everything so easy.",
+    "localizedText": "We had such a relaxed stay! The airbnb is so clean, beautiful and well organised. A special touch we loved- the toys laid out in the kids room- our son was so excited to play with the trucks and read the gorgeous books. The unit has a most beautiful view of the mountain and it was a pleasure to stay there, in a very very comfy bed I might add! The hosts were so responsive and helpful which made everything so easy.",
+    "localizedReview": null,
+    "localizedDate": "October 2025",
+    "localizedReviewerLocation": "Prince George, Canada",
+    "createdAt": "2025-10-29T20:20:52Z",
+    "reviewee": {
+      "id": "96168707",
+      "firstName": "Dee And Ryan",
+      "hostName": "Dee And Ryan",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg",
+      "profilePath": "/users/profile/1467158362449623656",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg"
+    },
+    "reviewer": {
+      "id": "104660647",
+      "firstName": "Amy",
+      "hostName": "Amy",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/fb874009-d05b-4217-8208-f20f6b4220df.jpg",
+      "profilePath": "/users/profile/1494231900299142902",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/fb874009-d05b-4217-8208-f20f6b4220df.jpg"
+    },
+    "reviewHighlight": "Stayed a few nights",
+    "highlightType": "LENGTH_OF_STAY",
+    "rating": 5,
+    "response": "Thank you, Amy — we’re so happy you found our house clean, comfortable and well stocked for your stay. It was a pleasure hosting you and we appreciate your kind words about the view, the toys and the comfy bed — you’re welcome back anytime!",
+    "ratingAccessibilityLabel": "Rating, 5 stars"
+  },
+  {
+    "startUrl": "https://www.airbnb.com/rooms/1492274390479279422",
+    "id": "1541584920990299169",
+    "language": "en",
+    "text": "Was such a beautiful spot, amazing views as you look out from the jacuzzi up the mountain, lovely furnishings and finishes in the Bnb, made us feel right at home as we walked through the door. <br/>And the arcade downstairs is a blast! <br/>Couldn't recommend this spot enough for a great family holiday! <br/>Thanks Ryan and Dee for being  amazing hosts,  responding quickly to any small request and always being incredibly helpful. <br/>We'll be back!",
+    "localizedText": "Was such a beautiful spot, amazing views as you look out from the jacuzzi up the mountain, lovely furnishings and finishes in the Bnb, made us feel right at home as we walked through the door. <br/>And the arcade downstairs is a blast! <br/>Couldn't recommend this spot enough for a great family holiday! <br/>Thanks Ryan and Dee for being  amazing hosts,  responding quickly to any small request and always being incredibly helpful. <br/>We'll be back!",
+    "localizedReview": null,
+    "localizedDate": "October 2025",
+    "localizedReviewerLocation": "Langley, Canada",
+    "createdAt": "2025-10-27T23:34:03Z",
+    "reviewee": {
+      "id": "96168707",
+      "firstName": "Dee And Ryan",
+      "hostName": "Dee And Ryan",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg",
+      "profilePath": "/users/profile/1467158362449623656",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/User/original/43e6406f-8937-4706-bea7-07fb01657296.jpeg"
+    },
+    "reviewer": {
+      "id": "104790447",
+      "firstName": "Matthew",
+      "hostName": "Matthew",
+      "pictureUrl": "https://a0.muscache.com/im/pictures/user/ce5853c2-ebc7-4154-8605-b5485b0ff54b.jpg",
+      "profilePath": "/users/profile/1483937605017467148",
+      "profilePicture": "https://a0.muscache.com/im/pictures/user/ce5853c2-ebc7-4154-8605-b5485b0ff54b.jpg"
+    },
+    "reviewHighlight": "Stayed with kids",
+    "highlightType": "TYPE_OF_TRIP",
+    "rating": 5,
+    "response": "Thanks so much, Matthew — we’re really glad our house felt like home and that you enjoyed the views, hot tub and arcade. We’d love to host you again next time you’re in Sun Peaks.",
+    "ratingAccessibilityLabel": "Rating, 5 stars"
+  }
+]

@@ -1,0 +1,60 @@
+# Environment secrets — never commit real .env files
+.env
+.env.*
+# But DO commit .env.example template files
+!**/.env.example
+!.env.example
+pricelabs-agent/.env
+notion-agent/.env
+guest-agent/.env
+Revenue Management Agent Project/.env
+
+# Claude Code settings (may contain API tokens from executed commands)
+.claude/settings.local.json
+.claude/*.local.json
+
+# Guest conversation logs (contain guest PII)
+guest-agent/conversations/
+
+# Auth session (Playwright saved credentials)
+pricelabs-agent/auth-data/
+
+# Generated reports and output
+pricelabs-agent/reports/
+apify_output/
+instagram_output/
+
+# Logs
+pricelabs-agent/agent.log
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+dist/
+*.egg-info/
+
+# Node
+node_modules/
+
+# Revenue Intel
+revenue-intel/auth-data/
+revenue-intel/.env
+revenue-intel/cache/
+revenue-intel/reports/
+revenue-intel/agent.log
+
+# Playwright MCP browser logs (may contain third-party API keys from visited pages)
+.playwright-mcp/
+
+# macOS / Windows artifacts
+.DS_Store
+desktop.ini
+Desktop.ini
+Thumbs.db
+*.lnk
+*.gdoc
+*.gsheet
+*.gslides

@@ -1,0 +1,10 @@
+# Revenue Management Agent — Python Dependencies
+# Python 3.9+ required (uses built-in dict/set type hints)
+# All runtime dependencies use Python stdlib only.
+
+# Testing
+pytest>=7.0.0
+
+# HTTP Bridge (serve.py)
+flask>=3.0.0
+python-dotenv>=1.0.0
