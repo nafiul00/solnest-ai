@@ -3,7 +3,6 @@ import { Bell, X, RefreshCw, Search, CheckCheck, PanelLeftClose, LogOut } from '
 import { useSystemStore } from '../../store/systemStore'
 import { useAuthStore } from '../../store/authStore'
 import { format } from 'date-fns'
-import { SolnestChatbot } from '../chatbot/SolnestChatbot'
 
 interface NavbarProps {
   title: string
@@ -107,9 +106,6 @@ export function Navbar({ title, subtitle, onSidebarToggle }: NavbarProps) {
       </div>
 
       <div style={{ width: 1, height: 20, background: 'var(--border)', flexShrink: 0 }} />
-
-      {/* AI Chatbot */}
-      <SolnestChatbot />
 
       {/* Notification bell */}
       <div style={{ position: 'relative', flexShrink: 0 }}>

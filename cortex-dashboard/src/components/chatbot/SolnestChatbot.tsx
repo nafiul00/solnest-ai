@@ -124,10 +124,12 @@ export function SolnestChatbot() {
   ])
   const [input,    setInput]    = useState("")
   const [loading,  setLoading]  = useState(false)
+  const [panelPos, setPanelPos] = useState({ top: 0, right: 0 })
 
   const scrollRef  = useRef<HTMLDivElement>(null)
   const inputRef   = useRef<HTMLTextAreaElement>(null)
   const panelRef   = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
 
   // Auto-scroll on new messages
   useEffect(() => {
@@ -141,16 +143,32 @@ export function SolnestChatbot() {
     if (open) setTimeout(() => inputRef.current?.focus(), 120)
   }, [open])
 
-  // Close on outside click
+  // Close on outside click (ignore clicks on the trigger button itself)
   useEffect(() => {
     function handler(e: MouseEvent) {
-      if (open && panelRef.current && !panelRef.current.contains(e.target as Node)) {
+      if (
+        open &&
+        panelRef.current &&
+        !panelRef.current.contains(e.target as Node) &&
+        !triggerRef.current?.contains(e.target as Node)
+      ) {
         setOpen(false)
       }
     }
     document.addEventListener("mousedown", handler)
     return () => document.removeEventListener("mousedown", handler)
   }, [open])
+
+  function toggleOpen() {
+    if (!open && triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect()
+      setPanelPos({
+        top:   rect.bottom + 10,
+        right: window.innerWidth - rect.right,
+      })
+    }
+    setOpen(o => !o)
+  }
 
   const sendMessage = useCallback(async (text: string) => {
     const trimmed = text.trim()
@@ -228,15 +246,16 @@ export function SolnestChatbot() {
   }
 
   return (
-    <div ref={panelRef} style={{ position: "relative", flexShrink: 0 }}>
-      {/* ── Chat Panel — drops down from navbar ── */}
+    <div style={{ position: "relative", flexShrink: 0 }}>
+      {/* ── Chat Panel — anchored below trigger button ── */}
       {open && (
         <div
+          ref={panelRef}
           className="chatbot-enter"
           style={{
             position:     "fixed",
-            top:          56,
-            right:        16,
+            top:          panelPos.top,
+            right:        panelPos.right,
             width:        380,
             height:       540,
             background:   "var(--bg-surface)",
@@ -414,41 +433,38 @@ export function SolnestChatbot() {
         </div>
       )}
 
-      {/* ── Trigger button — pill style matching agents/health chips ── */}
+      {/* ── Trigger button ── */}
       <button
-        onClick={() => setOpen(o => !o)}
+        ref={triggerRef}
+        onClick={toggleOpen}
         style={{
           position:   "relative",
           display:    "flex",
           alignItems: "center",
-          gap:        6,
-          padding:    "4px 10px",
+          gap:        7,
+          padding:    "6px 14px 6px 10px",
           borderRadius: 20,
-          background: open
-            ? "rgba(184,134,11,0.14)"
-            : "rgba(184,134,11,0.08)",
-          border: `1px solid rgba(184,134,11,${open ? "0.45" : "0.22"})`,
+          background: open ? "rgba(184,134,11,0.14)" : "rgba(184,134,11,0.08)",
+          border:     `1px solid rgba(184,134,11,${open ? "0.50" : "0.25"})`,
           cursor:     "pointer",
           flexShrink: 0,
           transition: "all 0.18s",
+          boxShadow:  open ? "none" : "0 1px 4px rgba(184,134,11,0.10)",
         }}
         title={open ? "Close AI assistant" : "Open AI assistant"}
         aria-label={open ? "Close AI assistant" : "Open AI assistant"}
       >
-        <ColorOrb size={14} />
-        <span style={{ fontSize: 12, fontWeight: 600, color: "var(--gold)" }}>
-          {open ? "Close" : "Solnest AI"}
+        <ColorOrb size={16} />
+        <span style={{ fontSize: 13, fontWeight: 600, color: "var(--gold)", letterSpacing: "-0.01em" }}>
+          {open ? "Close" : "Ask AI"}
         </span>
-        {/* Live pulse dot */}
         {!open && (
           <span style={{
-            width:        6,
-            height:       6,
-            borderRadius: "50%",
-            background:   "var(--sage)",
-            boxShadow:    "0 0 5px rgba(44,110,73,0.5)",
-            flexShrink:   0,
-            animation:    "pulse-green 2.5s infinite",
+            width: 6, height: 6, borderRadius: "50%",
+            background: "var(--sage)",
+            boxShadow:  "0 0 5px rgba(44,110,73,0.5)",
+            flexShrink: 0,
+            animation:  "pulse-green 2.5s infinite",
           }} />
         )}
       </button>

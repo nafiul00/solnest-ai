@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { DollarSign, Calendar, Percent, TrendingUp, Star, CheckSquare, Clock, Zap } from 'lucide-react'
 import { PageWrapper } from '../../components/layout/PageWrapper'
+import { SolnestChatbot } from '../../components/chatbot/SolnestChatbot'
 import { MetricCard } from '../../components/shared/MetricCard'
 import { AgentCard } from '../../components/shared/AgentCard'
 import { LiveFeed } from '../../components/shared/LiveFeed'
@@ -67,7 +68,7 @@ export function OverviewPage() {
   const weekADRData = REVENUE_DATA.slice(-7).map(d => ({ label: d.date, value: d.adr }))
 
   return (
-    <PageWrapper title="Solnest Stays" subtitle="Real-time STR operations across 8 properties · 3 markets">
+    <PageWrapper title="Solnest Stays" subtitle="Real-time STR operations across 8 properties · 3 markets" actions={<SolnestChatbot />}>
       <div className="space-y-5">
         {/* Row 1: KPI Metrics */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 12 }}>
