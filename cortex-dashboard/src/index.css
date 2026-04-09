@@ -625,6 +625,19 @@ main.flex-1 {
   40%           { transform: translateY(-5px); opacity: 1; }
 }
 
+/* AI button blip — subtle scale+glow pulse to grab attention */
+@keyframes ai-blip {
+  0%, 100% { transform: scale(1);    box-shadow: 0 1px 4px rgba(184,134,11,0.12); }
+  50%      { transform: scale(1.06); box-shadow: 0 0 0 6px rgba(184,134,11,0.12), 0 0 18px rgba(184,134,11,0.20); }
+}
+.ai-btn-blip {
+  animation: ai-blip 2.6s cubic-bezier(0.45,0,0.55,1) infinite;
+}
+.ai-btn-blip:hover {
+  animation: none;
+  transform: scale(1.04);
+}
+
 /* ─── Box Loader ─────────────────────────────────────────────────────────────── */
 .boxes {
   --size: 28px;

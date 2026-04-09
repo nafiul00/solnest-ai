@@ -437,32 +437,32 @@ export function SolnestChatbot() {
       <button
         ref={triggerRef}
         onClick={toggleOpen}
+        className={open ? "" : "ai-btn-blip"}
         style={{
-          position:   "relative",
-          display:    "flex",
-          alignItems: "center",
-          gap:        7,
-          padding:    "6px 14px 6px 10px",
-          borderRadius: 20,
-          background: open ? "rgba(184,134,11,0.14)" : "rgba(184,134,11,0.08)",
-          border:     `1px solid rgba(184,134,11,${open ? "0.50" : "0.25"})`,
-          cursor:     "pointer",
-          flexShrink: 0,
-          transition: "all 0.18s",
-          boxShadow:  open ? "none" : "0 1px 4px rgba(184,134,11,0.10)",
+          position:     "relative",
+          display:      "flex",
+          alignItems:   "center",
+          gap:          9,
+          padding:      "9px 18px 9px 13px",
+          borderRadius: 24,
+          background:   open ? "rgba(184,134,11,0.16)" : "rgba(184,134,11,0.10)",
+          border:       `1.5px solid rgba(184,134,11,${open ? "0.55" : "0.35"})`,
+          cursor:       "pointer",
+          flexShrink:   0,
+          transition:   "border-color 0.18s, background 0.18s",
         }}
         title={open ? "Close AI assistant" : "Open AI assistant"}
         aria-label={open ? "Close AI assistant" : "Open AI assistant"}
       >
-        <ColorOrb size={16} />
-        <span style={{ fontSize: 13, fontWeight: 600, color: "var(--gold)", letterSpacing: "-0.01em" }}>
+        <ColorOrb size={20} />
+        <span style={{ fontSize: 14, fontWeight: 700, color: "var(--gold)", letterSpacing: "-0.01em" }}>
           {open ? "Close" : "Ask AI"}
         </span>
         {!open && (
           <span style={{
-            width: 6, height: 6, borderRadius: "50%",
+            width: 7, height: 7, borderRadius: "50%",
             background: "var(--sage)",
-            boxShadow:  "0 0 5px rgba(44,110,73,0.5)",
+            boxShadow:  "0 0 6px rgba(44,110,73,0.6)",
             flexShrink: 0,
             animation:  "pulse-green 2.5s infinite",
           }} />
