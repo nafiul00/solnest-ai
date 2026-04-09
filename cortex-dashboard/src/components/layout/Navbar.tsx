@@ -3,6 +3,7 @@ import { Bell, X, RefreshCw, Search, CheckCheck, PanelLeftClose, LogOut } from '
 import { useSystemStore } from '../../store/systemStore'
 import { useAuthStore } from '../../store/authStore'
 import { format } from 'date-fns'
+import { SolnestChatbot } from '../chatbot/SolnestChatbot'
 
 interface NavbarProps {
   title: string
@@ -107,6 +108,9 @@ export function Navbar({ title, subtitle, onSidebarToggle }: NavbarProps) {
 
       <div style={{ width: 1, height: 20, background: 'var(--border)', flexShrink: 0 }} />
 
+      {/* AI Chatbot */}
+      <SolnestChatbot />
+
       {/* Notification bell */}
       <div style={{ position: 'relative', flexShrink: 0 }}>
         <button
@@ -115,20 +119,23 @@ export function Navbar({ title, subtitle, onSidebarToggle }: NavbarProps) {
           style={{ borderColor: unread > 0 ? 'rgba(184,134,11,0.35)' : 'transparent' }}
         >
           <Bell size={15} color={unread > 0 ? 'var(--gold)' : 'var(--t3)'} />
-          {unread > 0 && (
-            <span style={{
-              position: 'absolute', top: -4, right: -4,
-              minWidth: 16, height: 16, borderRadius: 8,
-              background: 'var(--red)', color: '#fff',
-              fontSize: 10, fontWeight: 700,
-              lineHeight: '16px', textAlign: 'center',
-              padding: '0 4px',
-              border: '2px solid var(--bg-surface)',
-            }}>
-              {unread}
-            </span>
-          )}
         </button>
+        {unread > 0 && (
+          <span style={{
+            position: 'absolute', top: -4, right: -4,
+            minWidth: 16, height: 16, borderRadius: 8,
+            background: 'var(--red)', color: '#fff',
+            fontSize: 10, fontWeight: 700,
+            lineHeight: '16px', textAlign: 'center',
+            padding: '0 4px',
+            border: '2px solid var(--bg-surface)',
+            pointerEvents: 'none',
+            zIndex: 1,
+            boxSizing: 'content-box',
+          }}>
+            {unread}
+          </span>
+        )}
 
         {showNotifs && (
           <>

@@ -228,24 +228,15 @@ export function SolnestChatbot() {
   }
 
   return (
-    <div
-      ref={panelRef}
-      style={{
-        position: "fixed",
-        bottom:   24,
-        right:    24,
-        zIndex:   9999,
-        display:  "flex",
-        flexDirection: "column",
-        alignItems: "flex-end",
-        gap: 10,
-      }}
-    >
-      {/* ── Chat Panel ── */}
+    <div ref={panelRef} style={{ position: "relative", flexShrink: 0 }}>
+      {/* ── Chat Panel — drops down from navbar ── */}
       {open && (
         <div
           className="chatbot-enter"
           style={{
+            position:     "fixed",
+            top:          56,
+            right:        16,
             width:        380,
             height:       540,
             background:   "var(--bg-surface)",
@@ -255,6 +246,7 @@ export function SolnestChatbot() {
             display:      "flex",
             flexDirection:"column",
             overflow:     "hidden",
+            zIndex:       9999,
           }}
         >
           {/* Header */}
@@ -422,44 +414,44 @@ export function SolnestChatbot() {
         </div>
       )}
 
-      {/* ── Trigger button ── */}
+      {/* ── Trigger button — inline navbar style ── */}
       <button
         onClick={() => setOpen(o => !o)}
+        className="btn-icon"
         style={{
-          width:         52,
-          height:        52,
-          borderRadius:  "50%",
-          background:    open ? "var(--bg-card-2)" : "var(--bg-surface)",
-          border:        `1.5px solid ${open ? "var(--border-mid)" : "rgba(184,134,11,0.40)"}`,
-          boxShadow:     open
-            ? "0 2px 8px rgba(10,10,9,0.10)"
-            : "0 4px 20px rgba(184,134,11,0.22), 0 2px 8px rgba(10,10,9,0.10)",
-          cursor:        "pointer",
-          display:       "flex",
-          alignItems:    "center",
-          justifyContent:"center",
-          transition:    "all 0.22s cubic-bezier(0.34,1.56,0.64,1)",
-          position:      "relative",
+          position:  "relative",
+          width:     32,
+          height:    32,
+          padding:   0,
+          border:    open
+            ? "1px solid rgba(184,134,11,0.45)"
+            : "1px solid rgba(184,134,11,0.25)",
+          background: open ? "rgba(184,134,11,0.10)" : "transparent",
+          borderRadius: 8,
+          display:  "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          transition: "all 0.18s",
         }}
         title={open ? "Close AI assistant" : "Open AI assistant"}
         aria-label={open ? "Close AI assistant" : "Open AI assistant"}
       >
         {open ? (
-          <ChevronDown size={20} color="var(--t2)" />
+          <ChevronDown size={15} color="var(--gold)" />
         ) : (
-          <ColorOrb size={30} />
+          <ColorOrb size={18} />
         )}
-        {/* Unread/activity pulse */}
+        {/* Live pulse dot */}
         {!open && (
           <span style={{
             position:     "absolute",
             top:          2,
             right:        2,
-            width:        10,
-            height:       10,
+            width:        7,
+            height:       7,
             borderRadius: "50%",
             background:   "var(--sage)",
-            border:       "2px solid var(--bg-surface)",
+            border:       "1.5px solid var(--bg-surface)",
             animation:    "pulse-green 2.5s infinite",
           }} />
         )}

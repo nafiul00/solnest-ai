@@ -21,7 +21,6 @@ import { ToastContainer } from './components/shared/ToastContainer'
 import { useSystemStore } from './store/systemStore'
 import { useActivityStore } from './store/activityStore'
 import { ProtectedRoute } from './components/auth/ProtectedRoute'
-import { SolnestChatbot } from './components/chatbot/SolnestChatbot'
 
 const PAGE_TITLES: Record<string, { title: string; subtitle?: string }> = {
   '/': { title: 'Overview', subtitle: 'Portfolio command center' },
@@ -87,8 +86,6 @@ export default function App() {
         <Route path="/*" element={<ProtectedRoute><Shell /></ProtectedRoute>} />
       </Routes>
       <ToastContainer />
-      {/* Global AI chatbot — available on every page when authenticated */}
-      <ProtectedRoute><SolnestChatbot /></ProtectedRoute>
     </BrowserRouter>
   )
 }
