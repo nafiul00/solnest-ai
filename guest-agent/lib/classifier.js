@@ -5,11 +5,15 @@
  * Classifies guest messages into intents and decides escalation.
  */
 
-import Anthropic from '@anthropic-ai/sdk';
+import OpenAI from 'openai';
 import 'dotenv/config';
 
-const anthropic = new Anthropic();
-const MODEL = 'claude-3-5-haiku-20241022';
+const openai = new OpenAI({
+  baseURL: 'https://openrouter.ai/api/v1',
+  apiKey: process.env.OPENROUTER_API_KEY,
+  defaultHeaders: { 'HTTP-Referer': 'https://solneststays.com', 'X-Title': 'Solnest AI' },
+});
+const MODEL = process.env.OPENROUTER_MODEL || 'openai/gpt-4o-mini'; // fast + cheap, like Haiku
 
 /**
  * Classify a guest message and determine if it needs escalation.
@@ -65,14 +69,16 @@ Return ONLY valid JSON (no markdown, no explanation):
 {"intent":"...","escalate":false,"reason":"Brief explanation","sentiment":"positive|neutral|negative|urgent"}`;
 
   try {
-    const response = await anthropic.messages.create({
+    const response = await openai.chat.completions.create({
       model: MODEL,
       max_tokens: 200,
-      system: systemPrompt,
-      messages: [{ role: 'user', content: `RECENT CONVERSATION:\n${conversationContext}\n\nNEW GUEST MESSAGE:\n${message}` }],
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: `RECENT CONVERSATION:\n${conversationContext}\n\nNEW GUEST MESSAGE:\n${message}` },
+      ],
     });
 
-    let text = response.content[0].text.trim();
+    let text = (response.choices[0].message.content ?? '').trim();
 
     // Strip markdown code fences if Haiku wraps the JSON
     if (text.startsWith('```')) {

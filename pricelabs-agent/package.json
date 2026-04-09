@@ -9,7 +9,7 @@
     "setup": "npx playwright install chromium && node setup-auth.js"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.52.0",
+    "openai": "^4.98.0",
     "playwright": "^1.49.0",
     "node-cron": "^3.0.3",
     "nodemailer": "^8.0.3",

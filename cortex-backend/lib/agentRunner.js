@@ -1,6 +1,6 @@
 /**
  * agentRunner.js
- * Runs an agent using the Anthropic claude-sonnet-4-6 model with streaming.
+ * Runs an agent using GPT-4o via OpenRouter with streaming.
  * Streams token chunks to the Socket.io room for the requesting client.
  * Emits:
  *   agent:stream:start  { agentId, runId }
@@ -8,12 +8,20 @@
  *   agent:stream:end    { agentId, runId, duration, status }
  */
 
-import Anthropic from '@anthropic-ai/sdk'
+import OpenAI from 'openai'
 import { v4 as uuid } from 'uuid'
 import { getAgentById, updateAgent, recordRun } from './agentState.js'
 import { addEntry } from './activityLog.js'
 
-const MODEL = process.env.CLAUDE_MODEL ?? 'claude-sonnet-4-6'
+const MODEL = process.env.OPENROUTER_MODEL ?? 'openai/gpt-4o'
+
+function makeClient() {
+  return new OpenAI({
+    baseURL: 'https://openrouter.ai/api/v1',
+    apiKey: process.env.OPENROUTER_API_KEY,
+    defaultHeaders: { 'HTTP-Referer': 'https://solneststays.com', 'X-Title': 'Solnest AI' },
+  })
+}
 
 let _io = null
 
@@ -53,24 +61,23 @@ export async function runAgent(agentId, prompt = null, socket = null) {
   let status = 'success'
 
   try {
-    const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
-
-    const stream = await client.messages.stream({
+    const stream = await makeClient().chat.completions.create({
       model: MODEL,
       max_tokens: 1024,
-      system: agent.systemPrompt,
-      messages: [{ role: 'user', content: userMessage }],
+      stream: true,
+      messages: [
+        { role: 'system', content: agent.systemPrompt },
+        { role: 'user',   content: userMessage },
+      ],
     })
 
-    for await (const event of stream) {
-      if (event.type === 'content_block_delta' && event.delta?.type === 'text_delta') {
-        const text = event.delta.text
+    for await (const chunk of stream) {
+      const text = chunk.choices[0]?.delta?.content ?? ''
+      if (text) {
         fullText += text
         emit('agent:stream:chunk', { agentId, runId, text })
       }
     }
-
-    await stream.finalMessage() // ensure stream is fully consumed
 
   } catch (err) {
     status = 'error'
@@ -151,24 +158,23 @@ Format:
   let status = 'success'
 
   try {
-    const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
-
-    const stream = await client.messages.stream({
+    const stream = await makeClient().chat.completions.create({
       model: MODEL,
       max_tokens: 1500,
-      system: systemPrompt,
-      messages: [{ role: 'user', content: userMessage }],
+      stream: true,
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user',   content: userMessage },
+      ],
     })
 
-    for await (const event of stream) {
-      if (event.type === 'content_block_delta' && event.delta?.type === 'text_delta') {
-        const text = event.delta.text
+    for await (const chunk of stream) {
+      const text = chunk.choices[0]?.delta?.content ?? ''
+      if (text) {
         fullText += text
         emit('agent:stream:chunk', { agentId: orchestratorId, runId, text })
       }
     }
-
-    await stream.finalMessage()
 
   } catch (err) {
     status = 'error'

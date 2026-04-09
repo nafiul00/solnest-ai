@@ -8,7 +8,7 @@
  */
 
 const { chromium } = require('playwright');
-const Anthropic = require('@anthropic-ai/sdk');
+const OpenAI = require('openai');
 const path = require('path');
 const fs = require('fs');
 
@@ -17,16 +17,23 @@ require('dotenv').config({ path: path.join(__dirname, '.env') });
 const AUTH_DIR = path.join(__dirname, 'auth-data');
 const REPORTS_DIR = path.join(__dirname, 'reports');
 const PRICELABS_URL = process.env.PRICELABS_URL || 'https://app.pricelabs.co/pricing';
-const CLAUDE_MODEL = process.env.CLAUDE_MODEL || 'claude-sonnet-4-6';
+const MODEL = process.env.OPENROUTER_MODEL || 'openai/gpt-4o';
 
 // Validate required env vars at startup
-if (!process.env.ANTHROPIC_API_KEY) {
-  console.error('ERROR: ANTHROPIC_API_KEY is not set in .env');
+if (!process.env.OPENROUTER_API_KEY) {
+  console.error('ERROR: OPENROUTER_API_KEY is not set in .env');
   process.exit(1);
 }
 
-// Create Anthropic client once (not per-listing)
-const anthropic = new Anthropic();
+// Create OpenRouter client once (not per-listing)
+const openai = new OpenAI({
+  baseURL: 'https://openrouter.ai/api/v1',
+  apiKey: process.env.OPENROUTER_API_KEY,
+  defaultHeaders: {
+    'HTTP-Referer': 'https://solneststays.com',
+    'X-Title': 'Solnest AI',
+  },
+});
 
 async function scrapeListings(page) {
   await page.goto(PRICELABS_URL, { waitUntil: 'networkidle', timeout: 60000 });
@@ -213,17 +220,16 @@ Note anything concerning (prices hitting min floor too often, demand factor off,
 
 Be specific with numbers. Don't be vague.`;
 
-  const response = await anthropic.messages.create({
-    model: CLAUDE_MODEL,
+  const response = await openai.chat.completions.create({
+    model: MODEL,
     max_tokens: 4096,
-    messages: [{ role: 'user', content: prompt }]
+    messages: [{ role: 'user', content: prompt }],
   });
 
-  if (!response.content || response.content.length === 0 || response.content[0].type !== 'text') {
-    throw new Error(`Unexpected Claude response format: ${JSON.stringify(response.content)}`);
-  }
+  const text = response.choices[0]?.message?.content;
+  if (!text) throw new Error(`Unexpected OpenRouter response: ${JSON.stringify(response)}`);
 
-  return response.content[0].text;
+  return text;
 }
 
 async function runAnalysis() {

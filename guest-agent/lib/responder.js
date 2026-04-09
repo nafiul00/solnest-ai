@@ -5,7 +5,7 @@
  * Strictly uses property knowledge base — NEVER hallucinate.
  */
 
-import Anthropic from '@anthropic-ai/sdk';
+import OpenAI from 'openai';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -14,8 +14,12 @@ import 'dotenv/config';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const KNOWLEDGE_DIR = path.join(__dirname, '..', 'knowledge');
 
-const anthropic = new Anthropic();
-const MODEL = process.env.CLAUDE_MODEL || 'claude-sonnet-4-6';
+const openai = new OpenAI({
+  baseURL: 'https://openrouter.ai/api/v1',
+  apiKey: process.env.OPENROUTER_API_KEY,
+  defaultHeaders: { 'HTTP-Referer': 'https://solneststays.com', 'X-Title': 'Solnest AI' },
+});
+const MODEL = process.env.OPENROUTER_MODEL || 'openai/gpt-4o';
 
 // Pre-loaded knowledge base cache (loaded at startup for speed)
 const knowledgeCache = new Map();
@@ -168,14 +172,13 @@ ${knowledge || 'No knowledge base available. Respond with: "Let me check with th
   }
 
   try {
-    const response = await anthropic.messages.create({
+    const response = await openai.chat.completions.create({
       model: MODEL,
       max_tokens: 500,
-      system: systemPrompt,
-      messages,
+      messages: [{ role: 'system', content: systemPrompt }, ...messages],
     });
 
-    return response.content[0].text;
+    return response.choices[0].message.content ?? '';
   } catch (err) {
     console.error(`[Responder] Failed: ${err.message}`);
     return "Thanks for your message! Let me check with the host and get back to you shortly.";
