@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useRef, useEffect, useCallback } from "react"
-import { X, Send, ChevronDown, RotateCcw } from "lucide-react"
+import { X, Send, RotateCcw } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 // ─── Config ────────────────────────────────────────────────────────────────────
@@ -414,44 +414,40 @@ export function SolnestChatbot() {
         </div>
       )}
 
-      {/* ── Trigger button — inline navbar style ── */}
+      {/* ── Trigger button — pill style matching agents/health chips ── */}
       <button
         onClick={() => setOpen(o => !o)}
-        className="btn-icon"
         style={{
-          position:  "relative",
-          width:     32,
-          height:    32,
-          padding:   0,
-          border:    open
-            ? "1px solid rgba(184,134,11,0.45)"
-            : "1px solid rgba(184,134,11,0.25)",
-          background: open ? "rgba(184,134,11,0.10)" : "transparent",
-          borderRadius: 8,
-          display:  "flex",
+          position:   "relative",
+          display:    "flex",
           alignItems: "center",
-          justifyContent: "center",
+          gap:        6,
+          padding:    "4px 10px",
+          borderRadius: 20,
+          background: open
+            ? "rgba(184,134,11,0.14)"
+            : "rgba(184,134,11,0.08)",
+          border: `1px solid rgba(184,134,11,${open ? "0.45" : "0.22"})`,
+          cursor:     "pointer",
+          flexShrink: 0,
           transition: "all 0.18s",
         }}
         title={open ? "Close AI assistant" : "Open AI assistant"}
         aria-label={open ? "Close AI assistant" : "Open AI assistant"}
       >
-        {open ? (
-          <ChevronDown size={15} color="var(--gold)" />
-        ) : (
-          <ColorOrb size={18} />
-        )}
+        <ColorOrb size={14} />
+        <span style={{ fontSize: 12, fontWeight: 600, color: "var(--gold)" }}>
+          {open ? "Close" : "Solnest AI"}
+        </span>
         {/* Live pulse dot */}
         {!open && (
           <span style={{
-            position:     "absolute",
-            top:          2,
-            right:        2,
-            width:        7,
-            height:       7,
+            width:        6,
+            height:       6,
             borderRadius: "50%",
             background:   "var(--sage)",
-            border:       "1.5px solid var(--bg-surface)",
+            boxShadow:    "0 0 5px rgba(44,110,73,0.5)",
+            flexShrink:   0,
             animation:    "pulse-green 2.5s infinite",
           }} />
         )}
