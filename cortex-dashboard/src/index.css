@@ -558,3 +558,133 @@ main.flex-1 {
 /* ─── Spacing helpers ───────────────────────────────────────────────────────── */
 .card.p-3 { padding: 14px !important; }
 .card.p-4 { padding: 18px !important; }
+
+/* ─── ColorOrb (chatbot trigger) ────────────────────────────────────────────── */
+@property --orb-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.color-orb {
+  display: grid;
+  grid-template-areas: "stack";
+  overflow: hidden;
+  border-radius: 50%;
+  position: relative;
+  transform: scale(1.1);
+}
+.color-orb::before,
+.color-orb::after {
+  content: "";
+  display: block;
+  grid-area: stack;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform: translateZ(0);
+}
+.color-orb::before {
+  background:
+    conic-gradient(from calc(var(--orb-angle) * 2) at 25% 70%, #D4920A, transparent 20% 80%, #D4920A),
+    conic-gradient(from calc(var(--orb-angle) * 2) at 45% 75%, #1A7A44, transparent 30% 60%, #1A7A44),
+    conic-gradient(from calc(var(--orb-angle) * -3) at 80% 20%, #B8860B, transparent 40% 60%, #B8860B),
+    conic-gradient(from calc(var(--orb-angle) * 2) at 15% 5%, #C9501A, transparent 10% 90%, #C9501A),
+    conic-gradient(from calc(var(--orb-angle) * 1) at 20% 80%, #B8860B, transparent 10% 90%, #B8860B),
+    conic-gradient(from calc(var(--orb-angle) * -2) at 85% 10%, #D4920A, transparent 20% 80%, #D4920A);
+  filter: blur(2px) contrast(1.5);
+  animation: orb-spin 20s linear infinite;
+}
+.color-orb::after {
+  background-image: radial-gradient(circle at center, rgba(255,255,255,0.15) 1px, transparent 1px);
+  background-size: 4px 4px;
+  mix-blend-mode: overlay;
+  mask-image: radial-gradient(black 25%, transparent 75%);
+}
+@keyframes orb-spin {
+  to { --orb-angle: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .color-orb::before { animation: none; }
+}
+
+/* Chatbot panel animations */
+@keyframes chatbot-slide-up {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)  scale(1); }
+}
+@keyframes chatbot-slide-down {
+  from { opacity: 1; transform: translateY(0)  scale(1); }
+  to   { opacity: 0; transform: translateY(12px) scale(0.97); }
+}
+.chatbot-enter { animation: chatbot-slide-up   0.22s cubic-bezier(0.34,1.56,0.64,1) both; }
+.chatbot-exit  { animation: chatbot-slide-down 0.18s ease-in both; }
+
+@keyframes typing-bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40%           { transform: translateY(-5px); opacity: 1; }
+}
+
+/* ─── Box Loader ─────────────────────────────────────────────────────────────── */
+.boxes {
+  --size: 28px;
+  --duration: 800ms;
+  --gold: #D4920A;
+  --gold-hi: #F0A825;
+  --gold-top: #B8790A;
+  height: calc(var(--size) * 2);
+  width: calc(var(--size) * 2);
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  margin-top: calc(var(--size) * 1.5 * -1);
+  transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg) translateZ(0px);
+}
+
+.boxes .box {
+  width: var(--size);
+  height: var(--size);
+  top: 0;
+  left: 0;
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.box-1 { transform: translate(100%, 0); animation: box1 var(--duration) linear infinite; }
+.box-2 { transform: translate(0, 100%); animation: box2 var(--duration) linear infinite; }
+.box-3 { transform: translate(100%, 100%); animation: box3 var(--duration) linear infinite; }
+.box-4 { transform: translate(200%, 0); animation: box4 var(--duration) linear infinite; }
+
+.boxes .box .face {
+  --translateZ: calc(var(--size) / 2);
+  --rotateY: 0deg;
+  --rotateX: 0deg;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: rotateY(var(--rotateY)) rotateX(var(--rotateX)) translateZ(var(--translateZ));
+}
+
+.boxes .box .face-front  { top: 0; left: 0;  background: rgba(255,255,255,0.92); }
+.boxes .box .face-back   { --rotateY: -180deg; top: 0; left: 0; background: rgba(255,255,255,0.75); }
+.boxes .box .face-right  { --rotateY: 90deg; top: 0; right: 0; background: rgba(200,200,200,0.60); }
+.boxes .box .face-top    { --rotateX: -90deg; top: 0; left: 0; background: rgba(255,255,255,1.0); }
+
+@keyframes box1 {
+  0%,  50% { transform: translate(100%, 0); }
+  100%      { transform: translate(200%, 0); }
+}
+@keyframes box2 {
+  0%        { transform: translate(0, 100%); }
+  50%       { transform: translate(0, 0); }
+  100%      { transform: translate(100%, 0); }
+}
+@keyframes box3 {
+  0%,  50% { transform: translate(100%, 100%); }
+  100%      { transform: translate(0, 100%); }
+}
+@keyframes box4 {
+  0%        { transform: translate(200%, 0); }
+  50%       { transform: translate(200%, 100%); }
+  100%      { transform: translate(100%, 100%); }
+}

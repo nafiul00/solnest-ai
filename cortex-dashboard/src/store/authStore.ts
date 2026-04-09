@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
 const DASHBOARD_EMAIL    = import.meta.env.VITE_DASHBOARD_EMAIL    ?? 'admin@solneststays.com'
-const DASHBOARD_PASSWORD = import.meta.env.VITE_DASHBOARD_PASSWORD ?? 'solnest2024'
+const DASHBOARD_PASSWORD = import.meta.env.VITE_DASHBOARD_PASSWORD ?? ''   // must be set via env — no hardcoded fallback
 const API_KEY            = import.meta.env.VITE_API_KEY            ?? ''
 
 interface AuthState {
@@ -29,6 +29,9 @@ function isTokenExpired(token: string): boolean {
   }
 }
 
+// Simple in-memory rate limit: max 5 attempts per 15 min
+const loginAttempts: { count: number; resetAt: number } = { count: 0, resetAt: Date.now() + 15 * 60_000 }
+
 export const useAuthStore = create<AuthState>()(
   persist(
     (set, _get) => ({
@@ -37,14 +40,25 @@ export const useAuthStore = create<AuthState>()(
       token: null,
 
       login: async (email, password) => {
-        // Simulate network latency
-        await new Promise(r => setTimeout(r, 800))
+        // Rate limiting
+        if (Date.now() > loginAttempts.resetAt) {
+          loginAttempts.count = 0
+          loginAttempts.resetAt = Date.now() + 15 * 60_000
+        }
+        if (loginAttempts.count >= 5) return false
+        loginAttempts.count++
+
+        // Artificial delay to slow brute-force
+        await new Promise(r => setTimeout(r, 600 + Math.random() * 400))
+
+        if (!DASHBOARD_PASSWORD) return false   // reject if env not configured
 
         const emailMatch    = email.toLowerCase().trim() === DASHBOARD_EMAIL.toLowerCase()
         const passwordMatch = password === DASHBOARD_PASSWORD
 
         if (!emailMatch || !passwordMatch) return false
 
+        loginAttempts.count = 0   // reset on success
         const token = generateToken(email)
         set({ isAuthenticated: true, email, token })
         return true

@@ -14,12 +14,14 @@ import { SettingsPage } from './pages/Settings'
 import { IntegrationsPage } from './pages/Integrations'
 import { EmailTriagePage } from './pages/EmailTriage'
 import { LoginPage } from './pages/auth/LoginPage'
+import LoadingPage from './pages/auth/LoadingPage'
 import { useSimulation } from './hooks/useSimulation'
 import { useLocation } from 'react-router-dom'
 import { ToastContainer } from './components/shared/ToastContainer'
 import { useSystemStore } from './store/systemStore'
 import { useActivityStore } from './store/activityStore'
 import { ProtectedRoute } from './components/auth/ProtectedRoute'
+import { SolnestChatbot } from './components/chatbot/SolnestChatbot'
 
 const PAGE_TITLES: Record<string, { title: string; subtitle?: string }> = {
   '/': { title: 'Overview', subtitle: 'Portfolio command center' },
@@ -81,9 +83,12 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/loading" element={<ProtectedRoute><LoadingPage /></ProtectedRoute>} />
         <Route path="/*" element={<ProtectedRoute><Shell /></ProtectedRoute>} />
       </Routes>
       <ToastContainer />
+      {/* Global AI chatbot — available on every page when authenticated */}
+      <ProtectedRoute><SolnestChatbot /></ProtectedRoute>
     </BrowserRouter>
   )
 }

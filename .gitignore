@@ -9,6 +9,9 @@ notion-agent/.env
 guest-agent/.env
 Revenue Management Agent Project/.env
 
+# MCP config contains API tokens — never commit
+.mcp.json
+
 # Claude Code settings (may contain API tokens from executed commands)
 .claude/settings.local.json
 .claude/*.local.json
